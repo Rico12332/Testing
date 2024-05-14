@@ -1,0 +1,18 @@
+version: 2.1  # Adjust version if necessary
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.9  # Choose a Python image compatible with your project
+    steps:
+      - checkout
+      - run:
+          name: Install Buildozer dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y libgirepository1.2-dev libnss3-dev libxml2-dev libssl-dev  # Example dependencies, adjust based on your needs
+
+      - run:
+          name: Build Android app (debug)
+          command: |
+            python -m buildozer android debug
